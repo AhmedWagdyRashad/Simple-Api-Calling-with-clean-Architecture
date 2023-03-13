@@ -3,10 +3,9 @@ package com.example.fawrytask.ui.item
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.domain.entity.CategoryResponse
 import com.example.domain.entity.ItemResponse
 import com.example.domain.usecase.GetItems
-import com.example.domain.utils.NetworkResult
+import com.example.domain.utils.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -26,11 +25,11 @@ class ItemViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO){
             try {
                 when(val response = getItemUseCase(category)){
-                    is NetworkResult.Success -> {
+                    is Result.Success -> {
                         _items.value = response.data
                         Log.e("CategoryViewModel" , "${response.data}")
                     }
-                    is NetworkResult.Error -> {
+                    is Result.Error -> {
                         Log.e("CategoryViewModel" , "${response.message}")
                     }
                 }

@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.entity.CategoryResponse
 import com.example.domain.usecase.GetCategory
-import com.example.domain.utils.NetworkResult
+import com.example.domain.utils.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -24,11 +24,11 @@ class CategoryViewModel  @Inject constructor(
         viewModelScope.launch(Dispatchers.IO){
             try {
                 when(val response = getCategoryUseCase()){
-                    is NetworkResult.Success -> {
+                    is Result.Success -> {
                         _categories.value = response.data
                         Log.e("CategoryViewModel" , "${response.data}")
                     }
-                    is NetworkResult.Error -> {
+                    is Result.Error -> {
                         Log.e("CategoryViewModel" , "${response.message}")
                     }
                 }
