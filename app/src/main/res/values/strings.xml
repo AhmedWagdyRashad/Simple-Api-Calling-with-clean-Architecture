@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">FawryTask</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dialog_header">Enter phone number to share the link</string>
+    <string name="cancel">Cancel</string>
+    <string name="share">Share</string>
 </resources>
